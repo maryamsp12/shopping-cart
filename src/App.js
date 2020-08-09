@@ -28,7 +28,7 @@ function App() {
     }
     else {
       const filteredProducts = (
-        products.products.filter(
+        data.products.filter(
           product => product.availableSizes.indexOf(event.target.value) >= 0
         ))
       setProducts({ products: filteredProducts })
