@@ -22,17 +22,17 @@ function App() {
   }
 
   const filterProducts = (event) => {
-    if (event.target.value === "") {      
-      // setSize(event.target.value)
+    if (event.target.value === "") {
       setProducts({ products: data.products })
+      setSize(event.target.value)
     }
     else {
       const filteredProducts = (
-        data.products.filter(
+        products.products.filter(
           product => product.availableSizes.indexOf(event.target.value) >= 0
-        ))        
-      // setSize(event.target.value)
+        ))
       setProducts({ products: filteredProducts })
+      setSize(event.target.value)
     }
   }
 
