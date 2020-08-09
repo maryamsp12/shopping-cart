@@ -1,5 +1,5 @@
 import React from 'react'
-import formatCurrency from './../util';
+import formatCurrency from '../util';
 
 export default function Products({prod}) {
     return (
