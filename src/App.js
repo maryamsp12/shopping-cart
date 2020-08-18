@@ -2,12 +2,14 @@ import React from 'react';
 import data from "./data.json";
 import Products from "./components/products";
 import Filter from './components/Filter';
+import Cart from './components/Cart';
 
 function App() {
 
   const [products, setProducts] = React.useState(data);
   const [size, setSize] = React.useState("");
   const [sort, setSort] = React.useState("");
+  const [cartItems, setCartItems] = React.useState([]);
 
   const sortProducts = event => {
     const sort = event.target.value;
@@ -36,6 +38,59 @@ function App() {
     }
   }
 
+  // const addToCart = product => {
+  //   const cartItemsCopy = cartItems.slice();
+  //   let alreadyInCart = false;
+  //   cartItemsCopy.forEach(item => {
+  //     if (item._id === product._id) {
+  //       console.log(item)
+  //       let i = item.count++;
+  //       cartItemsCopy.push({
+  //         ...product, count: i
+  //       })
+  //       alreadyInCart = true;
+  //     }
+  //   });
+  //   if (!alreadyInCart) {
+  //     cartItemsCopy.push({ ...product, count: 1 })
+  //   }
+  //   setCartItems(cartItemsCopy);
+  // }
+
+  const removeFromCart = (item) => {
+
+    const cartItemsCopy = cartItems.slice();
+
+    if (item.count > 1) {
+      cartItemsCopy.forEach(product => {
+        if (product._id === item._id) {
+          product.count--;
+        }
+      });
+      setCartItems(cartItemsCopy);
+    }
+
+    else {      
+      setCartItems(cartItemsCopy.filter(x => item._id !== x._id));
+    }
+
+  }
+
+  const addToCart = product => {
+    const cartItemsCopy = cartItems.slice();
+    let alreadyInCart = false;
+    cartItemsCopy.forEach(item => {
+      if (item._id === product._id) {   
+        item.count++;
+        alreadyInCart = true;
+         }
+    });
+    if (!alreadyInCart) {
+      cartItemsCopy.push({ ...product, count: 1 })
+    }
+    setCartItems(cartItemsCopy);
+  }
+
   return (
     <div className="grid-container">
       <header>
@@ -53,10 +108,16 @@ function App() {
               filterProducts={filterProducts}
               sortProducts={sortProducts}
             />
-            <Products prod={products} />
+            <Products
+              prod={products}
+              addToCart={addToCart}
+            />
           </div>
           <div className="sidebar">
-            cartItems
+            <Cart
+              cartItems={cartItems}
+              removeFromCart={removeFromCart}
+            />
           </div>
         </div>
       </main>

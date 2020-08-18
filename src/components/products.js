@@ -1,25 +1,29 @@
 import React from 'react'
 import formatCurrency from '../util';
 
-export default function Products({prod}) {
-    return (
-        <div>
-            <ul className="products">
-              {prod.products.map((product) => (
-                <li key={product._id}>
-                  <div className="product">
-                    <a href={`# ${product._id}`}>
-                      <img src={product.images} alt={product.title}></img>
-                      <p>{product.title}</p>
-                    </a>
-                    <div className="product-price">
-                      <div>{formatCurrency(product.price)}</div>
-                      <button className="button primary">Add To Cart</button>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-        </div>
-    )
+export default function Products(props) {
+  const { prod, addToCart } = props;
+  return (
+    <div>
+      <ul className="products">
+        {prod.products.map((product) => (
+          <li key={product._id}>
+            <div className="product">
+              <a href={`# ${product._id}`}>
+                <img src={product.images} alt={product.title}></img>
+                <p>{product.title}</p>
+              </a>
+              <div className="product-price">
+                <div>{formatCurrency(product.price)}</div>
+                <button
+                  onClick={() => addToCart(product)}
+                  className="button primary"
+                >Add To Cart</button>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
 }
