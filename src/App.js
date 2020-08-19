@@ -9,7 +9,13 @@ function App() {
   const [products, setProducts] = React.useState(data);
   const [size, setSize] = React.useState("");
   const [sort, setSort] = React.useState("");
-  const [cartItems, setCartItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState(
+    JSON.parse(localStorage.getItem('cartItems')) ? JSON.parse(localStorage.getItem('cartItems')) : []
+  );
+  
+  const createOrder = order => {
+    alert('need to save order for ' + order.name)
+  }
 
   const sortProducts = event => {
     const sort = event.target.value;
@@ -68,29 +74,32 @@ function App() {
         }
       });
       setCartItems(cartItemsCopy);
+      // localStorage.setItem('cartItems', JSON.stringify(cartItems)) // working fine
     }
 
-    else {      
+    else {
       setCartItems(cartItemsCopy.filter(x => item._id !== x._id));
+      // localStorage.setItem('cartItems', JSON.stringify(cartItems)); // local storage
     }
-
+    localStorage.setItem('cartItems', JSON.stringify(cartItems)) // working fine
   }
 
   const addToCart = product => {
     const cartItemsCopy = cartItems.slice();
     let alreadyInCart = false;
     cartItemsCopy.forEach(item => {
-      if (item._id === product._id) {   
+      if (item._id === product._id) {
         item.count++;
         alreadyInCart = true;
-         }
+      }
     });
     if (!alreadyInCart) {
       cartItemsCopy.push({ ...product, count: 1 })
     }
     setCartItems(cartItemsCopy);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems)); // local storage
   }
-
+  console.log(cartItems);
   return (
     <div className="grid-container">
       <header>
@@ -117,6 +126,7 @@ function App() {
             <Cart
               cartItems={cartItems}
               removeFromCart={removeFromCart}
+              createOrder={createOrder}
             />
           </div>
         </div>
