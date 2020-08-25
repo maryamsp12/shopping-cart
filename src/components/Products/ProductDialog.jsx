@@ -19,7 +19,7 @@ const ProductDialog = props => {
         >
             <DialogContent>
                 <div className="product-details">
-                    <img src={product.images} alt={product.title} />
+                    <img src={product.image} alt={product.title} />
                     <div className="product-details-description">
                         <p>
                             <strong>{product.title}</strong>

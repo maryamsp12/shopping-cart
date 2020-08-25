@@ -3,8 +3,10 @@ import data from "./data.json";
 import Products from "./components/products";
 import Filter from './components/Filter';
 import Cart from './components/Cart';
+import store from "./store";
+import { Provider } from "react-redux";
 
-function App() {
+const App = () => {
 
   const [products, setProducts] = React.useState(data);
   const [size, setSize] = React.useState("");
@@ -12,7 +14,7 @@ function App() {
   const [cartItems, setCartItems] = React.useState(
     JSON.parse(localStorage.getItem('cartItems')) ? JSON.parse(localStorage.getItem('cartItems')) : []
   );
-  
+
   const createOrder = order => {
     alert('need to save order for ' + order.name)
   }
@@ -99,42 +101,44 @@ function App() {
     setCartItems(cartItemsCopy);
     localStorage.setItem('cartItems', JSON.stringify(cartItems)); // local storage
   }
-  console.log(cartItems);
+  
   return (
-    <div className="grid-container">
-      <header>
-        <a href="/">React-Redux shopping cart</a>
-      </header>
-      <main>
-        <div className="content">
-          <div className="main">
+    <Provider store={store}>
+      <div className="grid-container">
+        <header>
+          <a href="/">React-Redux shopping cart</a>
+        </header>
+        <main>
+          <div className="content">
+            <div className="main">
 
-            <Filter
-              count={products.products.length}
-              size={products.size}
-              sort={products.sort}
-              availableSizes={() => (products.map((p) => p.products.availableSizes))}
-              filterProducts={filterProducts}
-              sortProducts={sortProducts}
-            />
-            <Products
-              prod={products}
-              addToCart={addToCart}
-            />
+              <Filter
+                count={products.products.length}
+                size={products.size}
+                sort={products.sort}
+                availableSizes={() => (products.map((p) => p.products.availableSizes))}
+                filterProducts={filterProducts}
+                sortProducts={sortProducts}
+              />
+              <Products
+                prod={products}
+                addToCart={addToCart}
+              />
+            </div>
+            <div className="sidebar">
+              <Cart
+                cartItems={cartItems}
+                removeFromCart={removeFromCart}
+                createOrder={createOrder}
+              />
+            </div>
           </div>
-          <div className="sidebar">
-            <Cart
-              cartItems={cartItems}
-              removeFromCart={removeFromCart}
-              createOrder={createOrder}
-            />
-          </div>
-        </div>
-      </main>
-      <footer>
-        All rights are reserved
+        </main>
+        <footer>
+          All rights are reserved
       </footer>
-    </div>
+      </div>
+    </Provider>
   );
 }
 

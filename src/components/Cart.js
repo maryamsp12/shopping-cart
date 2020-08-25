@@ -22,7 +22,6 @@ export default function Cart(props) {
     }
 
     const submitOrder = e => {
-        console.log('Order:', e)
 
         e.preventDefault(); // bcoz not gonna refresh the page
         const order = {
@@ -47,7 +46,7 @@ export default function Cart(props) {
                         {cartItems.map(item => (
                             <li key={item._id}>
                                 <div>
-                                    <img src={item.images} alt={item.title}></img>
+                                    <img src={item.image} alt={item.title}></img>
                                 </div>
                                 <div>
                                     <div>{item.title}</div>
