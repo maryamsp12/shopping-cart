@@ -3,7 +3,7 @@
         {
             "_id": "dress1",
             "title": "Dress 1",
-            "images": "/images/dress1.jpg",
+            "image": "/images/dress1.jpg",
             "description": "about dress 1",
             "price": 400,
             "availableSizes": ["S", "XXL"]
@@ -11,7 +11,7 @@
         {
             "_id": "dress2",
             "title": "Dress 2",
-            "images": "/images/dress1.jpg",
+            "image": "/images/dress1.jpg",
             "description": "about dress 2",
             "price": 20,
             "availableSizes": ["XL", "XXL"]
@@ -19,7 +19,7 @@
         {
             "_id": "dress3",
             "title": "Dress 3",
-            "images": "/images/dress1.jpg",
+            "image": "/images/dress1.jpg",
             "description": "about dress 3",
             "price": 10,
             "availableSizes": ["L", "XXL"]
@@ -27,7 +27,7 @@
         {
             "_id": "dress4",
             "title": "Dress 4",
-            "images": "/images/dress1.jpg",
+            "image": "/images/dress1.jpg",
             "description": "about dress 4",
             "price": 90,
             "availableSizes": ["M", "XXL"]
@@ -35,7 +35,7 @@
         {
             "_id": "dress5",
             "title": "Dress 5",
-            "images": "/images/dress1.jpg",
+            "image": "/images/dress1.jpg",
             "description": "about dress 5",
             "price": 20,
             "availableSizes": ["S", "XXL"]
@@ -43,26 +43,11 @@
         {
             "_id": "dress6",
             "title": "Dress 6",
-            "images": "/images/dress1.jpg",
+            "image": "/images/dress1.jpg",
             "description": "about dress 6",
             "price": 80,
             "availableSizes": ["M", "XL"]
-        },
-        {
-            "_id": "dress7",
-            "title": "Dress 7",
-            "images": "/images/dress1.jpg",
-            "description": "about dress 7",
-            "price": 20,
-            "availableSizes": ["M", "XXL"]
-        },
-        {
-            "_id": "dress8",
-            "title": "Dress 8",
-            "images": "/images/dress1.jpg",
-            "description": "about dress 8",
-            "price": 20,
-            "availableSizes": ["XS", "XXL"]
         }
+     
     ]
 }

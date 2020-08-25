@@ -58,7 +58,7 @@ footer{
 /* Products */
 .products{
   display: flex;
-  flex-wrap: wrap; /* images will come under each other */
+  flex-wrap: wrap; /* image will come under each other */
   align-items: center;
   justify-content: center;
   padding: 0;
